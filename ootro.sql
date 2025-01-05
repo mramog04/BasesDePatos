@@ -271,14 +271,16 @@ CREATE TABLE SECGUA (
 );
 
 CREATE TABLE WEAPONLICENCES (
-    EmployeeID NUMBER,
     WeaponLicencesID NUMBER PRIMARY KEY,
+    EmployeeID NUMBER,
     WeaponName VARCHAR2(20) NOT NULL,
-    ExpirationDate DATE NOT NULL
+    ExpirationDate DATE NOT NULL,
+    CONSTRAINT fk_EmployeeID FOREIGN KEY (EmployeeID) REFERENCES SECURITYEMPLOYEES(EmployeeID)
 );
 
 CREATE TABLE WEAPON (
     WeaponID NUMBER PRIMARY KEY,
+    WeaponLicencesID NUMBER,
     CONSTRAINT fk_WeaponLicences FOREIGN KEY (WeaponLicencesID) REFERENCES WEAPONLICENCES(WeaponLicencesID)
 );
 
